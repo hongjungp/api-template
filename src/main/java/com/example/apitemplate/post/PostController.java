@@ -4,6 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
+
 
 @RestController
 @RequiredArgsConstructor
@@ -18,7 +20,8 @@ public class PostController {
 
     @PostMapping
     public ResponseEntity<?> createPost(@RequestBody CreatePostRequest createPostRequest){
-        return ResponseEntity.ok(postService.createPost(createPostRequest));
+        CreatePostResponse createPostResponse = postService.createPost(createPostRequest);
+        return ResponseEntity.created(URI.create("api/v1/posts")).body(createPostResponse);
     }
 
     @GetMapping("/{postId}")

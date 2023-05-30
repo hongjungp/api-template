@@ -9,13 +9,21 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PostService {
     final private PostRepository postRepository;
-    public Post createPost(CreatePostRequest createPostRequest){
+    public CreatePostResponse createPost(CreatePostRequest createPostRequest){
         Post post = Post.builder()
                 .title(createPostRequest.getTitle())
                 .content(createPostRequest.getContent())
                 .build();
-        Long id = postRepository.createPost(post);
-        return findPostById(id);
+        postRepository.createPost(post);
+        System.out.println(post);
+        Post newPost = findPostById(post.getId());
+        CreatePostResponse createPostResponse = CreatePostResponse.builder()
+                .title(newPost.getTitle())
+                .content(newPost.getContent())
+                .createdAt(newPost.getCreatedAt())
+                .updatedAt(newPost.getUpdatedAt())
+                .build();
+        return createPostResponse;
     }
     public List<Post> findAllPosts(){
         return postRepository.findAllPost();

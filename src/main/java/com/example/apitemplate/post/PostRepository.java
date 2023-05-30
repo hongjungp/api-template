@@ -2,6 +2,7 @@ package com.example.apitemplate.post;
 
 import lombok.RequiredArgsConstructor;
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -10,14 +11,16 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PostRepository {
     private final SqlSession sqlSession;
+    private final String SQL_PREFIX = "com.example.apitemplate.post.PostMapper.";
+
     public List<Post> findAllPost(){
-        return sqlSession.getMapper(PostMapper.class).findAllPosts();
+        return sqlSession.selectList(SQL_PREFIX+ "findAllPosts");
     }
     public Post findPostById(Long id){
-        return sqlSession.getMapper(PostMapper.class).findById(id);
+        return sqlSession.selectOne(SQL_PREFIX+ "findPostById", id);
     }
 
-    public Long createPost(Post post){
-        return sqlSession.getMapper(PostMapper.class).createPost(post);
+    public void createPost(Post post){
+        sqlSession.insert(SQL_PREFIX+ "createPost", post);
     }
 }
