@@ -16,7 +16,16 @@
         INSERT INTO members (email, password, nickname)
         VALUES (#{email}, #{password}, #{nickname})
     </insert>
-
+    <select id="findByIdMember" parameterType="java.lang.Long" resultMap="memberResultMap">
+        SELECT *
+        FROM members
+        WHERE id = #{id}
+    </select>
+    <select id="findByEmailMember" parameterType="java.lang.String" resultMap="memberResultMap">
+        SELECT *
+        FROM members
+        WHERE email = #{email}
+    </select>
 
     <!--    <select id="findAllPosts" resultMap="postResultMap">-->
     <!--        SELECT * FROM posts-->

@@ -6,8 +6,11 @@
 </head>
 <body>
 <nav>
-    <a href="/auth/login">로그인</a>
-    <a href="/auth/signup">회원가입</a>
+    <a th:href="@{/auth/login}" th:unless="${session.member_id}">로그인</a>
+    <a th:href="@{/auth/signup}" th:unless="${session.member_id}">회원가입</a>
+    <form th:action="@{/auth/logout}" method="POST" th:if="${session.member_id}">
+        <button type="submit">로그아웃</button>
+    </form>
 </nav>
 <h1>MainPage</h1>
 </body>

@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 @RequestMapping("/auth")
 @RequiredArgsConstructor
@@ -23,7 +25,14 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public String login(){
+    public String login(@ModelAttribute LoginRequest loginRequest, HttpSession httpSession){
+        Long memberId = authService.login(loginRequest);
+        System.out.println(memberId);
+        if(memberId == null){
+            return "redirect:/auth/login";
+        }
+        httpSession.setAttribute("member_id", memberId);
+        System.out.println(httpSession.getAttribute("member_id"));
         return "redirect:/";
     }
     @PostMapping("/signup")
@@ -32,4 +41,5 @@ public class AuthController {
         authService.signup(createMemberRequest);
         return "redirect:/auth/login";
     }
+
 }
