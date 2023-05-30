@@ -1,0 +1,12 @@
+spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  datasource:
+    driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    url: jdbc:sqlserver://121.124.126.41:10839;databaseName=api_template;encrypt=false;
+    username: dev_data
+    password: dev_data123
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml

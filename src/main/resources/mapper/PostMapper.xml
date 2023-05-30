@@ -3,8 +3,8 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.example.apitemplate.post.PostMapper">
-    <resultMap id="postResultMap" type="com.example.apitemplate.post.Post">
+<mapper namespace="com.example.apitemplate.domain.member.Mem">
+    <resultMap id="postResultMap" type="com.example.apitemplate.domain.post.Post">
         <id property="id" column="id" />
         <result property="title" column="title" />
         <result property="content" column="content" />
@@ -12,7 +12,7 @@
         <result property="updatedAt" column="updated_at" />
     </resultMap>
 
-    <insert id="createPost" parameterType="com.example.apitemplate.post.Post" useGeneratedKeys="true" keyProperty="id">
+    <insert id="createPost" parameterType="com.example.apitemplate.domain.post.Post" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO posts (title, content)
         VALUES (#{title}, #{content})
     </insert>

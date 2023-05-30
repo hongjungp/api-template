@@ -1,4 +1,4 @@
-package com.example.apitemplate.post;
+package com.example.apitemplate.domain.post;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
