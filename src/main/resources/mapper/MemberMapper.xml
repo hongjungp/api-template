@@ -13,17 +13,17 @@
 
     <insert id="createMember" parameterType="com.example.apitemplate.domain.member.Member" useGeneratedKeys="true"
             keyProperty="id">
-        INSERT INTO members (email, password, nickname)
-        VALUES (#{email}, #{password}, #{nickname})
+        INSERT INTO member (email, password, nickname, role)
+        VALUES (#{email}, #{password}, #{nickname}, #{role})
     </insert>
     <select id="findByIdMember" parameterType="java.lang.Long" resultMap="memberResultMap">
         SELECT *
-        FROM members
+        FROM member
         WHERE id = #{id}
     </select>
     <select id="findByEmailMember" parameterType="java.lang.String" resultMap="memberResultMap">
         SELECT *
-        FROM members
+        FROM member
         WHERE email = #{email}
     </select>
 

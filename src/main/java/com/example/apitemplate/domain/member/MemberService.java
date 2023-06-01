@@ -1,5 +1,6 @@
 package com.example.apitemplate.domain.member;
 
+import com.example.apitemplate.domain.auth.Role;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -10,11 +11,12 @@ public class MemberService {
     private final MemberRepository memberRepository;
     private final PasswordEncoder passwordEncoder;
 
-    public Member createMember(CreateMemberRequest createMemberRequest){
+    public Member createMember(CreateMemberRequest createMemberRequest, Role role){
         Member member = Member.builder()
                 .email(createMemberRequest.getEmail())
                 .password(passwordEncoder.encode(createMemberRequest.getPassword()))
                 .nickname(createMemberRequest.getNickname())
+                .role(role)
                 .build();
         memberRepository.createMember(member);
         return member;

@@ -2,12 +2,13 @@ package com.example.apitemplate.domain.post;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 
 
-@RestController
+@Controller
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/posts")
 public class PostController {

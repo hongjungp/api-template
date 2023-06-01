@@ -1,7 +1,3 @@
-function route(url){
+function route(url) {
     window.location.href = url;
-}
-
-function logout(){
-
 }

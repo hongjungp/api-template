@@ -1,17 +1,14 @@
 package com.example.apitemplate.domain.member;
 
-import com.example.apitemplate.domain.auth.Role;
 import lombok.*;
 
 @Getter
+@Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Member {
-    private Long id;
+public class CreateMemberResponse {
     private String email;
-    private String password;
     private String nickname;
-    private Role role;
 }

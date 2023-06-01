@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Spring boot 템플릿</title>
 </head>
 <body>
 <nav>
@@ -11,6 +11,7 @@
     <form th:action="@{/auth/logout}" method="POST" th:if="${session.member_id}">
         <button type="submit">로그아웃</button>
     </form>
+    <a th:href="@{/member}" th:if="${session.member_id}">마이페이지</a>
 </nav>
 <h1>MainPage</h1>
 </body>

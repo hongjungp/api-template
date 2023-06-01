@@ -1,6 +1,7 @@
 package com.example.apitemplate.domain.auth;
 
 import com.example.apitemplate.domain.member.CreateMemberRequest;
+import com.example.apitemplate.domain.member.Member;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,6 +29,7 @@ public class AuthController {
     public String login(@ModelAttribute LoginRequest loginRequest, HttpSession httpSession){
         Long memberId = authService.login(loginRequest);
         System.out.println(memberId);
+        System.out.println(123);
         if(memberId == null){
             return "redirect:/auth/login";
         }
