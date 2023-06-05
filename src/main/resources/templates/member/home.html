@@ -1,13 +1,15 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:replace="~{layout/default}"
+>
 <head>
-    <meta charset="UTF-8">
-    <title>My Page</title>
+    <title>마이페이지</title>
 </head>
-<script src="/js/main.js"></script>
 <body>
-<h1>My Page</h1>
-<div>
+<div layout:fragment="content">
+
+    <h1>My Page</h1>
     <h2 th:text="${member.nickname}">nick name</h2>
     <p th:text="${member.email}">User Email</p>
 </div>

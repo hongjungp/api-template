@@ -3,28 +3,39 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.example.apitemplate.domain.member.Mem">
+<mapper namespace="com.example.apitemplate.domain.post.PostMapper">
     <resultMap id="postResultMap" type="com.example.apitemplate.domain.post.Post">
         <id property="id" column="id" />
         <result property="title" column="title" />
         <result property="content" column="content" />
         <result property="createdAt" column="created_at" />
         <result property="updatedAt" column="updated_at" />
+        <result property="memberId" column="member_id" />
     </resultMap>
 
     <insert id="createPost" parameterType="com.example.apitemplate.domain.post.Post" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO posts (title, content)
-        VALUES (#{title}, #{content})
+        INSERT INTO post (title, content, member_id)
+        VALUES (#{title}, #{content}, #{memberId})
     </insert>
 
 
     <select id="findAllPosts" resultMap="postResultMap">
-        SELECT * FROM posts
+        SELECT * FROM post
     </select>
 
     <select id="findPostById" parameterType="java.lang.Long" resultMap="postResultMap">
-        SELECT * FROM posts WHERE id = #{id}
+        SELECT * FROM post WHERE id = #{id}
     </select>
 
+    <update id="updatePost" parameterType="com.example.apitemplate.domain.post.Post">
+        UPDATE post
+        SET title = #{title}, content = #{content}
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deletePost" parameterType="java.lang.Long">
+        DELETE post
+        WHERE id = #{id}
+    </delete>
 
 </mapper>

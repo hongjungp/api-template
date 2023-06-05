@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<nav th:fragment="gnb">
+    <a th:href="@{/}">홈으로 돌아가기</a>
+    <a th:href="@{/auth/login}" th:unless="${session.member_id}">로그인</a>
+    <a th:href="@{/auth/signup}" th:unless="${session.member_id}">회원가입</a>
+    <form th:action="@{/auth/logout}" method="POST" th:if="${session.member_id}">
+        <button type="submit">로그아웃</button>
+    </form>
+    <a th:href="@{/member}" th:if="${session.member_id}">마이페이지</a>
+    <a th:href="@{/posts}">게시물 목록</a>
+</nav>
+</html>

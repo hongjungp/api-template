@@ -27,13 +27,4 @@
         WHERE email = #{email}
     </select>
 
-    <!--    <select id="findAllPosts" resultMap="postResultMap">-->
-    <!--        SELECT * FROM posts-->
-    <!--    </select>-->
-
-    <!--    <select id="findPostById" parameterType="java.lang.Long" resultMap="postResultMap">-->
-    <!--        SELECT * FROM posts WHERE id = #{id}-->
-    <!--    </select>-->
-
-
 </mapper>

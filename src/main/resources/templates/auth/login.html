@@ -1,24 +1,27 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:replace="~{layout/default}">
 <head>
     <title>Login</title>
-    <script src="/js/main.js"></script>
 </head>
 <body>
-<h1>Login</h1>
-<form th:action="@{/auth/login}" method="post">
-    <div>
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
-    </div>
-    <div>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
-    </div>
-    <div>
-        <button type="submit">Login</button>
-        <button type="submit" onclick=route("/auth/signup")>Sign up</button>
-    </div>
-</form>
+<th:block layout:fragment="content">
+    <h1>Login</h1>
+    <form th:action="@{/auth/login}" method="post">
+        <div>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <div>
+            <button type="submit">Login</button>
+            <button type="button" onclick=route("/auth/signup")>Sign up</button>
+        </div>
+    </form>
+</th:block>
 </body>
 </html>

@@ -23,8 +23,10 @@ public class SecurityConfig {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/auth/**", "/").permitAll()
+                .antMatchers("/js/**", "/*.ico", "/css/**").permitAll()
+                .antMatchers("/auth/**", "/", "/posts/**").permitAll()
                 .antMatchers("/admin/**").hasRole("ADMIN")
+                .antMatchers("/posts/new","/posts/edit" ).authenticated()
                 .anyRequest().authenticated()
                 .and()
                 .logout()
@@ -49,6 +51,7 @@ public class SecurityConfig {
 //                .antMatchers("/v3/api-docs", "/configuration/ui", "/swagger-resources/**", "/swagger-ui/**",
 //                        "/configuration/security", "/swagger-ui.html", "/webjars/**", "/swagger/**")
                 .antMatchers("/static/css/**, /static/js/**, *.ico")
+                .antMatchers("/css/**, /js/**, /*.ico")
                 ;
     }
 }

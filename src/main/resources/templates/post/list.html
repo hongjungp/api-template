@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default}">
+<head>
+    <title>게시물 목록</title>
+</head>
+<body>
+<th:block layout:fragment="content">
+
+    <h1>게시물 목록</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>제목</th>
+            <th>작성자</th>
+            <th>작성일</th>
+            <th>수정일</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <!-- 반복문을 사용하여 게시물 목록을 표시 -->
+        <tr th:each="post : ${posts}">
+            <td><a th:href="@{/posts/{postId}(postId=${post.id})}" th:text="${post.title}"/></td>
+            <td th:text="${post.author}"/>
+            <td th:text="${post.createdAt}"/>
+            <td th:text="${post.updatedAt}"/>
+        </tr>
+        <a th:href="@{/posts/new}" th:if="${session.member_id}">글작성</a>
+        </tbody>
+    </table>
+</th:block>
+</body>
+</html>

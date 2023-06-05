@@ -1,28 +1,32 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:replace="~{layout/default}">
 <head>
     <meta charset="UTF-8">
     <title>Sign Up Form</title>
+    <script src="/js/main.js"></script>
 </head>
-<script src="/js/main.js"></script>
 <body>
-<h1>Sign Up Form</h1>
-<form th:action="@{/auth/signup}" method="post">
-    <div>
-        <label for="nickname">Nickname</label>
-        <input type="text" id="nickname" name="nickname" required>
-    </div>
-    <div>
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
-    </div>
-    <div>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
-    </div>
-    <div>
-        <button type="submit">Register</button>
-    </div>
-</form>
+<th:block layout:fragment="content">
+    <h1>Sign Up Form</h1>
+    <form th:action="@{/auth/signup}" method="post">
+        <div>
+            <label for="nickname">Nickname</label>
+            <input type="text" id="nickname" name="nickname" required>
+        </div>
+        <div>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <div>
+            <button type="submit">Register</button>
+        </div>
+    </form>
+</th:block>
 </body>
 </html>
