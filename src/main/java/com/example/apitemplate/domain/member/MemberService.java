@@ -1,6 +1,6 @@
 package com.example.apitemplate.domain.member;
 
-import com.example.apitemplate.domain.auth.Role;
+import com.example.apitemplate.domain.auth2.Role;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

@@ -19,6 +19,8 @@ public class PostController {
         return "post/new";
     }
 
+
+
     @PostMapping("/new")
     public String createPost(@ModelAttribute CreatePostRequest createPostRequest, HttpSession httpSession) {
         Long id = (Long) httpSession.getAttribute("member_id");

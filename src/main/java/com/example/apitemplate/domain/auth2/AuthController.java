@@ -1,7 +1,6 @@
-package com.example.apitemplate.domain.auth;
+package com.example.apitemplate.domain.auth2;
 
 import com.example.apitemplate.domain.member.CreateMemberRequest;
-import com.example.apitemplate.domain.member.Member;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpSession;
 
 @Controller
-@RequestMapping("/auth")
+@RequestMapping("/auth2")
 @RequiredArgsConstructor
 public class AuthController {
     private final AuthService authService;
@@ -28,8 +27,6 @@ public class AuthController {
     @PostMapping("/login")
     public String login(@ModelAttribute LoginRequest loginRequest, HttpSession httpSession){
         Long memberId = authService.login(loginRequest);
-        System.out.println(memberId);
-        System.out.println(123);
         if(memberId == null){
             return "redirect:/auth/login";
         }

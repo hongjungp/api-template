@@ -1,4 +1,4 @@
-package com.example.apitemplate.domain.auth;
+package com.example.apitemplate.domain.auth2;
 
 import lombok.*;
 

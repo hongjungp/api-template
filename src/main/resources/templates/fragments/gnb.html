@@ -8,6 +8,7 @@
         <button type="submit">로그아웃</button>
     </form>
     <a th:href="@{/member}" th:if="${session.member_id}">마이페이지</a>
+    <a th:href="@{/menu/list}" th:if="${session.member_id}">메뉴목록</a>
     <a th:href="@{/posts}">게시물 목록</a>
 </nav>
 </html>

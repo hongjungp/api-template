@@ -1,4 +1,4 @@
-package com.example.apitemplate.domain.auth;
+package com.example.apitemplate.domain.auth2;
 
 import com.example.apitemplate.domain.member.CreateMemberRequest;
 import com.example.apitemplate.domain.member.Member;
@@ -8,7 +8,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -36,6 +35,8 @@ public class AuthService implements UserDetailsService {
         UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword());
         Authentication auth = generateAuthentication(authToken);
         storeAuthenticationInSession(auth);
+        System.out.println(member);
+        System.out.println(member.getId());
         return member.getId();
     }
 
