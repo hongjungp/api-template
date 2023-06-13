@@ -9,6 +9,8 @@
         <result property="prtCdId" column="PRT_CD_ID"/>
         <result property="cdNm" column="CD_NM"/>
         <result property="lvl" column="LVL"/>
+        <result property="delYn" column="DEL_YN"/>
+        <result property="useYn" column="USE_YN"/>
         <result property="crtDt" column="CRT_DT"/>
         <result property="udtDt" column="UDT_DT"/>
         <result property="crtId" column="CRT_ID"/>
@@ -31,7 +33,7 @@
                 #{udtId})
     </insert>
 
-    <update id="updateCode" parameterType="com.example.apitemplate.domain.code.vo.codeVO">
+    <update id="updateCode" parameterType="com.example.apitemplate.domain.code.vo.CodeVO">
         UPDATE TBL_COM_CD
         SET CD_NM     = #{cdNm},
             PRT_CD_ID = #{prtCdId},
@@ -43,7 +45,7 @@
           AND PRT_CD_ID = #{prtCdId}
     </update>
 
-    <update id="deleteCode" parameterType="com.example.apitemplate.domain.code.vo.codeVO">
+    <update id="deleteCode" parameterType="com.example.apitemplate.domain.code.vo.CodeVO">
         UPDATE TBL_COM_CD
         SET DEL_YN = 'Y',
             UDT_DT = CURRENT_TIMESTAMP,

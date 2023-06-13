@@ -61,5 +61,21 @@
         FROM TBL_MENU
     </select>
 
+    <select id="findAllMenusWithAuth" resultMap="menuResultMap">
+        SELECT * FROM TBL_MENU d
+            JOIN (SELECT MENU_ID FROM TBL_MENU_AUTH a JOIN
+                (SELECT USR_AUTH_ID FROM TBL_USER WHERE USR_ID = #{usrId}) b
+                    ON a.AUTH_ID = b.USR_AUTH_ID) c ON c.MENU_ID = d.MENU_ID
+    </select>
 
+<!--menu Auth 부분-->
+    <insert id="insertMenuAuth" parameterType="com.example.apitemplate.domain.menu.vo.MenuAuthVO">
+        INSERT INTO TBL_MENU_AUTH (MENU_ID, AUTH_ID, CRT_ID, UDT_ID)
+        VALUES (#{menuId},#{authId},#{crtId},#{udtId})
+    </insert>
+    <delete id="deleteMenuAuth" parameterType="com.example.apitemplate.domain.menu.vo.MenuAuthVO">
+        DELETE TBL_MENU_AUTH
+        WHERE MENU_ID=#{menuId}
+        AND AUTH_ID=#{authId}
+    </delete>
 </mapper>
