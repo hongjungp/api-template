@@ -12,6 +12,7 @@ import lombok.experimental.SuperBuilder;
 @NoArgsConstructor
 @AllArgsConstructor
 public abstract class BaseDto {
+    protected WorkType wrkTp;
     protected String crtDt;
     protected String udtDt;
     protected String crtId;

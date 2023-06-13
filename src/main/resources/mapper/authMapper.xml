@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.apitemplate.domain.auth.mapper.AuthMapper">
+    <resultMap id="authResultMap" type="com.example.apitemplate.domain.auth.vo.AuthVO">
+        <id property="authId" column="AUTH_ID"/>
+        <result property="authNm" column="AUTH_NM"/>
+        <result property="crtDt" column="CRT_DT"/>
+        <result property="udtDt" column="UDT_DT"/>
+        <result property="crtId" column="CRT_ID"/>
+        <result property="udtId" column="UDT_ID"/>
+    </resultMap>
+
+    <select id="findById" resultMap="authResultMap" parameterType="string">
+        SELECT *
+        FROM TBL_AUTH
+        WHERE AUTH_ID = #{authId}
+    </select>
+
+    <insert id="insertAuth" parameterType="com.example.apitemplate.domain.auth.vo.AuthVO" useGeneratedKeys="true"
+            keyProperty="authId">
+        INSERT INTO TBL_AUTH (AUTH_ID, AUTH_NM, CRT_ID, UDT_ID)
+        VALUES (#{authId},
+                #{authNm},
+                #{crtId},
+                #{udtId})
+    </insert>
+
+    <update id="updateAuth" parameterType="com.example.apitemplate.domain.auth.vo.AuthVO">
+        UPDATE TBL_AUTH
+        SET AUTH_ID = #{authId},
+            AUTH_NM = #{authNm},
+            CRT_ID  = #{crtId},
+            UDT_DT  = CURRENT_TIMESTAMP,
+            UDT_ID  = #{udtId}
+        WHERE AUTH_ID = #{authId}
+    </update>
+
+    <delete id="deleteAuth" parameterType="com.example.apitemplate.domain.auth.vo.AuthVO">
+        DELETE TBL_AUTH
+        WHERE AUTH_ID = #{authId}
+    </delete>
+
+    <select id="findAllAuths" resultMap="authResultMap">
+        SELECT *
+        FROM TBL_AUTH
+    </select>
+
+
+</mapper>

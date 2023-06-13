@@ -24,10 +24,9 @@ import java.util.List;
 @RequestMapping("/api/v1/menu")
 public class MenuController {
     private final MenuService menuService;
-    private final UserService userService;
     @PostMapping("/get-menus")
     public ResponseEntity<?> getMenus(@RequestBody RequestEntity<Void> request, HttpSession httpSession){
-        List<MenuVO> menus = menuService.getUsers();
+        List<MenuVO> menus = menuService.getMenus();
         ResponseEntity response =
                 ResponseEntity.builder()
                         .seq(request.getSeq())

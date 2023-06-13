@@ -16,7 +16,7 @@ import java.util.List;
 public class MenuService {
     private final MenuDAO menuDAO;
 
-    public List<MenuVO> getUsers() {
+    public List<MenuVO> getMenus() {
         List<MenuVO> menus = menuDAO.findAllMenus();
         return menus;
     }

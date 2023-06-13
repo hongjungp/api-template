@@ -12,7 +12,6 @@ import lombok.experimental.SuperBuilder;
 @AllArgsConstructor
 @ToString
 public class MenuDto extends BaseDto {
-    private WorkType wrkTp;
     private String menuId;
     private String menuNm;
     private String menuUrl;

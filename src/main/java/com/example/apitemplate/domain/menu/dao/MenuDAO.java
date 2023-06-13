@@ -28,7 +28,4 @@ public class MenuDAO {
         sqlSession.delete(SQL_PREFIX+"deleteMenu", menuVO);
     }
 
-    public MenuVO findByIdUser(String id) {
-        return sqlSession.selectOne(SQL_PREFIX+"findById", id);
-    }
 }

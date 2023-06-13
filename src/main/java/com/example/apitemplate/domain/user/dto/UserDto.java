@@ -11,7 +11,6 @@ import java.time.LocalDateTime;
 @Builder
 @ToString
 public class UserDto extends BaseDto {
-    private WorkType wrkTp;
     private String usrId;
     private String usrEmail;
     private String pwd;

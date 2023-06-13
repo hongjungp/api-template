@@ -1,7 +1,12 @@
 package com.example.apitemplate.domain.auth.service;
 
+import com.example.apitemplate.domain.auth.dao.AuthDAO;
+import com.example.apitemplate.domain.auth.dto.AuthDto;
 import com.example.apitemplate.domain.auth.dto.CustomUserDetails;
 import com.example.apitemplate.domain.auth.dto.LoginDto;
+import com.example.apitemplate.domain.auth.mapper.AuthMapper;
+import com.example.apitemplate.domain.auth.vo.AuthVO;
+import com.example.apitemplate.domain.common.WorkType;
 import com.example.apitemplate.domain.user.service.UserService;
 import com.example.apitemplate.domain.user.vo.UserVO;
 import lombok.RequiredArgsConstructor;
@@ -13,10 +18,14 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class AuthService implements UserDetailsService {
+    private final AuthDAO authDAO;
     private final UserService userService;
     private final AuthenticationManagerBuilder authBuilder;
 
@@ -49,5 +58,33 @@ public class AuthService implements UserDetailsService {
         UserVO userVo = userService.getUserById(username);
         UserDetails userDetails = new CustomUserDetails(userVo);
         return userDetails;
+    }
+
+    public List<AuthVO> getAuths() {
+        List<AuthVO> auths = authDAO.findAllAuths();
+        return auths;
+    }
+
+    @Transactional
+    public void setAuths(List<AuthDto> auths, String userId) {
+        for (AuthDto dto : auths) {
+            dto.setUdtId(userId);
+            dto.setCrtId(userId);
+            AuthVO authVO = AuthMapper.toEntity(dto);
+            switch (dto.getWrkTp()) {
+                case C:
+                    authDAO.insert(authVO);
+                    System.out.println(WorkType.C);
+                    break;
+                case U:
+                    authDAO.update(authVO);
+                    System.out.println(WorkType.U);
+                    break;
+                case D:
+                    authDAO.delete(authVO);
+                    System.out.println(WorkType.D);
+                    break;
+            }
+        }
     }
 }
