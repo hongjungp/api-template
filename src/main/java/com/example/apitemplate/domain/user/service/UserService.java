@@ -2,7 +2,7 @@ package com.example.apitemplate.domain.user.service;
 
 
 import com.example.apitemplate.domain.common.WorkType;
-import com.example.apitemplate.domain.user.dao.UserDAO;
+import com.example.apitemplate.domain.user.dao.UserDao;
 import com.example.apitemplate.domain.user.dto.UserDto;
 import com.example.apitemplate.domain.user.mapper.UserMapper;
 import com.example.apitemplate.domain.user.vo.UserVO;
@@ -16,14 +16,14 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class UserService {
-    private final UserDAO userDAO;
+    private final UserDao userDao;
     private final PasswordEncoder passwordEncoder;
     public UserVO getUserById(String id){
-        UserVO userVO = userDAO.findByIdUser(id);
+        UserVO userVO = userDao.findByIdUser(id);
         return userVO;
     }
     public List<UserVO> getUsers() {
-        List<UserVO> users = userDAO.findAllUsers();
+        List<UserVO> users = userDao.findAllUsers();
         return users;
     }
 
@@ -36,15 +36,15 @@ public class UserService {
             UserVO userVO = UserMapper.toEntity(dto);
             switch (dto.getWrkTp()) {
                 case C:
-                    userDAO.insert(userVO);
+                    userDao.insert(userVO);
                     System.out.println(WorkType.C);
                     break;
                 case U:
-                    userDAO.update(userVO);
+                    userDao.update(userVO);
                     System.out.println(WorkType.U);
                     break;
                 case D:
-                    userDAO.delete(userVO);
+                    userDao.delete(userVO);
                     System.out.println(WorkType.D);
                     break;
             }
@@ -52,7 +52,7 @@ public class UserService {
     }
 
     public void updateLoginInfo(String usrId){
-        userDAO.updateLoginInfo(usrId);
+        userDao.updateLoginInfo(usrId);
     }
     public boolean isPasswordMatches(String password, String storedPassword){
         return passwordEncoder.matches(password, storedPassword);

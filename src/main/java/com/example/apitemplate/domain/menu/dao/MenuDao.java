@@ -9,7 +9,7 @@ import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
-public class MenuDAO {
+public class MenuDao {
     private final SqlSession sqlSession;
     private final String SQL_PREFIX = "com.example.apitemplate.domain.menu.mapper.MenuMapper.";
     public List<MenuVO> findAllMenus(){

@@ -9,7 +9,7 @@ import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
-public class AuthDAO {
+public class AuthDao {
     private final SqlSession sqlSession;
     private final String SQL_PREFIX = "com.example.apitemplate.domain.auth.mapper.AuthMapper.";
 

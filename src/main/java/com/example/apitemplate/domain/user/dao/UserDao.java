@@ -9,7 +9,7 @@ import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
-public class UserDAO {
+public class UserDao {
     private final SqlSession sqlSession;
     private final String SQL_PREFIX = "com.example.apitemplate.domain.user.mapper.UserMapper.";
     public List<UserVO> findAllUsers(){

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.apitemplate.domain.code.mapper.CodeMapper">
+    <resultMap id="codeResultMap" type="com.example.apitemplate.domain.code.vo.CodeVO">
+        <id property="cdId" column="CD_ID"/>
+        <result property="prtCdId" column="PRT_CD_ID"/>
+        <result property="cdNm" column="CD_NM"/>
+        <result property="lvl" column="LVL"/>
+        <result property="crtDt" column="CRT_DT"/>
+        <result property="udtDt" column="UDT_DT"/>
+        <result property="crtId" column="CRT_ID"/>
+        <result property="udtId" column="UDT_ID"/>
+    </resultMap>
+
+    <select id="findById" resultMap="codeResultMap" parameterType="string">
+        SELECT *
+        FROM TBL_COM_CD
+        WHERE CD_ID = #{id}
+    </select>
+
+    <insert id="insertCode" parameterType="com.example.apitemplate.domain.code.vo.CodeVO">
+        INSERT INTO TBL_COM_CD (CD_ID, PRT_CD_ID, LVL, CD_NM, CRT_ID, UDT_ID)
+        VALUES (#{cdId},
+                #{prtCdId},
+                #{lvl},
+                #{cdNm},
+                #{crtId},
+                #{udtId})
+    </insert>
+
+    <update id="updateCode" parameterType="com.example.apitemplate.domain.code.vo.codeVO">
+        UPDATE TBL_COM_CD
+        SET CD_NM     = #{cdNm},
+            PRT_CD_ID = #{prtCdId},
+            LVL         = #{lvl},
+            CRT_ID      = #{crtId},
+            UDT_DT      = CURRENT_TIMESTAMP,
+            UDT_ID      = #{udtId}
+        WHERE CD_ID = #{cdId}
+          AND PRT_CD_ID = #{prtCdId}
+    </update>
+
+    <update id="deleteCode" parameterType="com.example.apitemplate.domain.code.vo.codeVO">
+        UPDATE TBL_COM_CD
+        SET DEL_YN = 'Y',
+            UDT_DT = CURRENT_TIMESTAMP,
+            UDT_ID = #{udtId}
+        WHERE CD_ID = #{cdId}
+          AND PRT_CD_ID = #{prtCdId}
+    </update>
+
+    <select id="findAllCodes" resultMap="codeResultMap">
+        SELECT *
+        FROM TBL_COM_CD
+    </select>
+
+
+</mapper>

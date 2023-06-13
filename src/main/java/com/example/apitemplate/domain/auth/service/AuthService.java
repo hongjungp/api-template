@@ -1,6 +1,6 @@
 package com.example.apitemplate.domain.auth.service;
 
-import com.example.apitemplate.domain.auth.dao.AuthDAO;
+import com.example.apitemplate.domain.auth.dao.AuthDao;
 import com.example.apitemplate.domain.auth.dto.AuthDto;
 import com.example.apitemplate.domain.auth.dto.CustomUserDetails;
 import com.example.apitemplate.domain.auth.dto.LoginDto;
@@ -25,7 +25,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class AuthService implements UserDetailsService {
-    private final AuthDAO authDAO;
+    private final AuthDao authDao;
     private final UserService userService;
     private final AuthenticationManagerBuilder authBuilder;
 
@@ -61,7 +61,7 @@ public class AuthService implements UserDetailsService {
     }
 
     public List<AuthVO> getAuths() {
-        List<AuthVO> auths = authDAO.findAllAuths();
+        List<AuthVO> auths = authDao.findAllAuths();
         return auths;
     }
 
@@ -73,15 +73,15 @@ public class AuthService implements UserDetailsService {
             AuthVO authVO = AuthMapper.toEntity(dto);
             switch (dto.getWrkTp()) {
                 case C:
-                    authDAO.insert(authVO);
+                    authDao.insert(authVO);
                     System.out.println(WorkType.C);
                     break;
                 case U:
-                    authDAO.update(authVO);
+                    authDao.update(authVO);
                     System.out.println(WorkType.U);
                     break;
                 case D:
-                    authDAO.delete(authVO);
+                    authDao.delete(authVO);
                     System.out.println(WorkType.D);
                     break;
             }
