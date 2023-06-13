@@ -1,16 +1,15 @@
 package com.example.apitemplate.domain.user.controller;
 
-import com.example.apitemplate.domain.common.RequestEntity;
-import com.example.apitemplate.domain.common.ResponseEntity;
-import com.example.apitemplate.domain.common.Result;
-import com.example.apitemplate.domain.common.Status;
+import com.example.apitemplate.domain.common.*;
 import com.example.apitemplate.domain.user.dto.UserDto;
 import com.example.apitemplate.domain.user.service.UserService;
 import com.example.apitemplate.domain.user.vo.UserVO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.Objects;
 
 @RestController
 @RequiredArgsConstructor
@@ -18,7 +17,8 @@ import java.util.List;
 public class UserController {
     private final UserService userService;
     @PostMapping("/get-users")
-    public ResponseEntity<UserVO> getUsers(@RequestBody RequestEntity request){
+    public ResponseEntity<?> getUsers(@RequestBody RequestEntity<Void> request, HttpSession httpSession){
+        System.out.println(httpSession.getAttribute("usrId"));
         List<UserVO> users = userService.getUsers();
         ResponseEntity response =
                 ResponseEntity.builder()
@@ -33,8 +33,11 @@ public class UserController {
     }
 
     @PostMapping("/set-users")
-    public ResponseEntity<UserVO> setUsers(@RequestBody RequestEntity<UserDto> request){
-        userService.setUsers(request.getData());
+    public ResponseEntity<?> setUsers(@RequestBody RequestEntity<UserDto> request, HttpSession httpSession){
+        System.out.println(request.getData());
+        System.out.println(httpSession.getAttribute("usrId"));
+        String userId = (String) httpSession.getAttribute("usrId");
+        userService.setUsers(request.getData(), userId);
         ResponseEntity response =
                 ResponseEntity.builder()
                         .result(Result.builder()

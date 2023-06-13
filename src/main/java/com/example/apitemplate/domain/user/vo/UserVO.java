@@ -1,17 +1,19 @@
 package com.example.apitemplate.domain.user.vo;
 
+import com.example.apitemplate.domain.common.BaseVO;
 import com.example.apitemplate.domain.user.dto.UserDto;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDateTime;
 
 @Getter
 @Setter
-@Builder
+@SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class UserVO {
+public class UserVO extends BaseVO {
     private String usrId;
     private String usrEmail;
     private String pwd;
@@ -26,9 +28,5 @@ public class UserVO {
     private String lastPwdDt;
     private String delYn;
     private String useYn;
-    private String crtDt;
-    private String udtDt;
-    private String crtId;
-    private String udtId;
 
 }

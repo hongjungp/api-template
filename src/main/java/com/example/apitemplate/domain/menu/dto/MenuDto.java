@@ -1,24 +1,22 @@
-package com.example.apitemplate.domain.menu;
+package com.example.apitemplate.domain.menu.dto;
 
+import com.example.apitemplate.domain.common.BaseDto;
+import com.example.apitemplate.domain.common.WorkType;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
-import java.time.LocalDateTime;
-
 @Getter
-@Builder
+@Setter
+@SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Menu{
+public class MenuDto extends BaseDto {
+    private WorkType wrkTp;
     private String menuId;
     private String menuNm;
     private String menuUrl;
     private String prtMenuId;
     private int lvl;
     private String leafYn;
-    private LocalDateTime crtDt;
-    private LocalDateTime udtDt;
-    private String crtId;
-    private String udtId;
 }

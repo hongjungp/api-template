@@ -7,6 +7,7 @@ import com.example.apitemplate.domain.user.dto.UserDto;
 import com.example.apitemplate.domain.user.mapper.UserMapper;
 import com.example.apitemplate.domain.user.vo.UserVO;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,17 +17,23 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserService {
     private final UserDAO userDAO;
-
+    private final PasswordEncoder passwordEncoder;
+    public UserVO getUserById(String id){
+        UserVO userVO = userDAO.findByIdUser(id);
+        return userVO;
+    }
     public List<UserVO> getUsers() {
         List<UserVO> users = userDAO.findAllUsers();
         return users;
     }
 
     @Transactional
-    public void setUsers(List<UserDto> users) {
+    public void setUsers(List<UserDto> users, String userId) {
         for (UserDto dto : users) {
+            dto.setPwd(passwordEncoder.encode(dto.getPwd()));
+            dto.setUdtId(userId);
+            dto.setCrtId(userId);
             UserVO userVO = UserMapper.toEntity(dto);
-            System.out.println(userVO);
             switch (dto.getWrkTp()) {
                 case C:
                     userDAO.insert(userVO);
@@ -42,5 +49,12 @@ public class UserService {
                     break;
             }
         }
+    }
+
+    public void updateLoginInfo(String usrId){
+        userDAO.updateLoginInfo(usrId);
+    }
+    public boolean isPasswordMatches(String password, String storedPassword){
+        return passwordEncoder.matches(password, storedPassword);
     }
 }

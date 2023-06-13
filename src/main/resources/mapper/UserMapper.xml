@@ -25,6 +25,12 @@
         <result property="udtId" column="UDT_ID"/>
     </resultMap>
 
+    <select id="findById" resultMap="userResultMap" parameterType="string">
+        SELECT *
+        FROM TBL_USER
+        WHERE USR_ID = #{usrId}
+    </select>
+
     <insert id="insertUser" parameterType="com.example.apitemplate.domain.user.vo.UserVO" useGeneratedKeys="true"
             keyProperty="usrId">
         INSERT INTO TBL_USER
@@ -35,26 +41,34 @@
 
     <update id="updateUser" parameterType="com.example.apitemplate.domain.user.vo.UserVO">
         UPDATE TBL_USER
-        SET USR_EMAIL = #{usrEmail},
-            PWD = #{pwd},
-            USR_NM = #{usrNm},
-            JUMIN = #{jumin},
-            PHONE = #{phone},
-            ADDR1 = #{addr1},
-            ADDR2 = #{addr2},
-            REMARK = #{remark},
-            LAST_PWD_DT = #{lastPwdDt},
+        SET USR_EMAIL   = #{usrEmail},
+            USR_NM      = #{usrNm},
+            JUMIN       = #{jumin},
+            PHONE       = #{phone},
+            ADDR1       = #{addr1},
+            ADDR2       = #{addr2},
+            REMARK      = #{remark},
+            PWD         = #{pwd},
+            LAST_PWD_DT = CURRENT_TIMESTAMP,
             USR_AUTH_ID = #{usrAuthId},
-            DEL_YN = #{delYn},
-            USE_YN = #{useYn},
-            UDT_DT = CURRENT_TIMESTAMP,
-            UDT_ID = #{udtId}
+            DEL_YN      = #{delYn},
+            USE_YN      = #{useYn},
+            UDT_DT      = CURRENT_TIMESTAMP,
+            UDT_ID      = #{udtId}
         WHERE USR_ID = #{usrId}
     </update>
 
     <update id="deleteUser" parameterType="com.example.apitemplate.domain.user.vo.UserVO">
         UPDATE TBL_USER
-        SET DEL_YN = 'Y'
+        SET DEL_YN = 'Y',
+            UDT_DT = CURRENT_TIMESTAMP,
+            UDT_ID = #{udtId}
+        WHERE USR_ID = #{usrId}
+    </update>
+
+    <update id="updateLoginInfo" parameterType="com.example.apitemplate.domain.user.vo.UserVO">
+        UPDATE TBL_USER
+        SET LAST_LOG_DT = CURRENT_TIMESTAMP
         WHERE USR_ID = #{usrId}
     </update>
 
@@ -63,5 +77,6 @@
         SELECT *
         FROM TBL_USER
     </select>
+
 
 </mapper>

@@ -3,8 +3,8 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.example.apitemplate.domain.menu.MenuMapper">
-    <resultMap id="menuResultMap" type="com.example.apitemplate.domain.menu.Menu">
+<mapper namespace="com.example.apitemplate.domain.menu.mapper.MenuMapper">
+    <resultMap id="menuResultMap" type="com.example.apitemplate.domain.menu.vo.MenuVO">
         <id property="menuId" column="MENU_ID"/>
         <result property="menuNm" column="MENU_NM"/>
         <result property="menuUrl" column="MENU_URL"/>
@@ -17,26 +17,49 @@
         <result property="udtId" column="UDT_ID"/>
     </resultMap>
 
-    <insert id="createMenu" parameterType="com.example.apitemplate.domain.menu.Menu" useGeneratedKeys="true"
-            keyProperty="menuId">
-        INSERT INTO TBL_MENU (MENU_ID, MENU_NM, MENU_URL, PRT_MENU_ID, LVL, LEAF_YN, CRT_ID, UDT_ID)
-        VALUES (#{menuId}, #{menuNm}, #{menuUrl}, #{prtMenuId}, #{lvl}, #{leafYn}, #{crtId}, #{udtId})
-    </insert>
-    <select id="findByMenuId" parameterType="string" resultMap="menuResultMap">
+    <select id="findById" resultMap="menuResultMap" parameterType="string">
         SELECT *
         FROM TBL_MENU
         WHERE MENU_ID = #{id}
     </select>
-    <select id="findAllMenuList" resultMap="menuResultMap">
+
+    <insert id="insertMenu" parameterType="com.example.apitemplate.domain.menu.vo.MenuVO" useGeneratedKeys="true"
+            keyProperty="menuId">
+        INSERT INTO TBL_MENU (MENU_ID, MENU_NM, MENU_URL, PRT_MENU_ID, LVL, LEAF_YN, CRT_ID, UDT_ID)
+        VALUES (#{menuId},
+                #{menuNm},
+                #{menuUrl},
+                #{prtMenuId},
+                #{lvl},
+                #{leafYn},
+                #{crtId},
+                #{udtId})
+    </insert>
+
+    <update id="updateMenu" parameterType="com.example.apitemplate.domain.menu.vo.MenuVO">
+        UPDATE TBL_MENU
+        SET MENU_NM     = #{menuNm},
+            MENU_URL    = #{menuUrl},
+            PRT_MENU_ID = #{prtMenuId},
+            LVL         = #{lvl},
+            LEAF_YN     = #{leafYn},
+            CRT_ID      = #{crtId},
+            UDT_DT      = CURRENT_TIMESTAMP,
+            UDT_ID      = #{udtId}
+        WHERE MENU_ID = #{menuId}
+          AND PRT_MENU_ID = #{prtMenuId}
+    </update>
+
+    <delete id="deleteMenu" parameterType="com.example.apitemplate.domain.menu.vo.MenuVO">
+        DELETE TBL_MENU
+        WHERE MENU_ID=#{menuId}
+        AND PRT_MENU_ID=#{prtMenuId}
+    </delete>
+
+    <select id="findAllMenus" resultMap="menuResultMap">
         SELECT *
         FROM TBL_MENU
     </select>
-    <update id="updateMenu" parameterType="com.example.apitemplate.domain.menu.Menu">
-        UPDATE TBL_MENU
-        SET MENU_NM = #{menuNM},
-            LVL     = #{lvl},
-            UDT_DT  = #{udtDt},
-            UDT_ID  = #{udtId}
-        WHERE MENU_ID = #{menuId}
-    </update>
+
+
 </mapper>

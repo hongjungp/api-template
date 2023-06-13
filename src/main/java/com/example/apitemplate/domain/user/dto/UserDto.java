@@ -1,5 +1,6 @@
 package com.example.apitemplate.domain.user.dto;
 
+import com.example.apitemplate.domain.common.BaseDto;
 import com.example.apitemplate.domain.common.WorkType;
 import lombok.*;
 
@@ -8,10 +9,8 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Builder
-@NoArgsConstructor
-@AllArgsConstructor
 @ToString
-public class UserDto {
+public class UserDto extends BaseDto {
     private WorkType wrkTp;
     private String usrId;
     private String usrEmail;
@@ -27,8 +26,8 @@ public class UserDto {
     private String lastPwdDt;
     private String delYn;
     private String useYn;
-    private String crtDt;
-    private String udtDt;
-    private String crtId;
-    private String udtId;
+//    private String crtDt;
+//    private String udtDt;
+//    private String crtId;
+//    private String udtId;
 }

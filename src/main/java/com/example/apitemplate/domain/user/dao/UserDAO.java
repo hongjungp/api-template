@@ -27,4 +27,12 @@ public class UserDAO {
     public void delete(UserVO userVO) {
         sqlSession.delete(SQL_PREFIX+"deleteUser", userVO);
     }
+
+    public UserVO findByIdUser(String id) {
+        return sqlSession.selectOne(SQL_PREFIX+"findById", id);
+    }
+
+    public void updateLoginInfo(String id){
+        sqlSession.selectOne(SQL_PREFIX+"updateLoginInfo", id);
+    }
 }
