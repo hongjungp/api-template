@@ -2,6 +2,7 @@ package com.example.apitemplate.domain.menu.dto;
 
 import com.example.apitemplate.domain.common.BaseDto;
 import com.example.apitemplate.domain.common.WorkType;
+import com.example.apitemplate.domain.common.YN;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
@@ -17,5 +18,5 @@ public class MenuDto extends BaseDto {
     private String menuUrl;
     private String prtMenuId;
     private int lvl;
-    private String leafYn;
+    private YN leafYn;
 }

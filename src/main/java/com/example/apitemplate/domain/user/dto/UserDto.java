@@ -2,6 +2,7 @@ package com.example.apitemplate.domain.user.dto;
 
 import com.example.apitemplate.domain.common.BaseDto;
 import com.example.apitemplate.domain.common.WorkType;
+import com.example.apitemplate.domain.common.YN;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -23,8 +24,8 @@ public class UserDto extends BaseDto {
     private String usrAuthId;
     private String lastLogDt;
     private String lastPwdDt;
-    private String delYn;
-    private String useYn;
+    private YN delYn;
+    private YN useYn;
 //    private String crtDt;
 //    private String udtDt;
 //    private String crtId;

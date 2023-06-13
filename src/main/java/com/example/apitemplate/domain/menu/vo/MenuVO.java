@@ -1,6 +1,7 @@
 package com.example.apitemplate.domain.menu.vo;
 
 import com.example.apitemplate.domain.common.BaseVO;
+import com.example.apitemplate.domain.common.YN;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
@@ -15,5 +16,5 @@ public class MenuVO extends BaseVO {
     private String menuUrl;
     private String prtMenuId;
     private int lvl;
-    private String leafYn;
+    private YN leafYn;
 }

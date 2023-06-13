@@ -1,6 +1,7 @@
 package com.example.apitemplate.domain.user.vo;
 
 import com.example.apitemplate.domain.common.BaseVO;
+import com.example.apitemplate.domain.common.YN;
 import com.example.apitemplate.domain.user.dto.UserDto;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
@@ -25,7 +26,7 @@ public class UserVO extends BaseVO {
     private String usrAuthId;
     private String lastLogDt;
     private String lastPwdDt;
-    private String delYn;
-    private String useYn;
+    private YN delYn;
+    private YN useYn;
 
 }
