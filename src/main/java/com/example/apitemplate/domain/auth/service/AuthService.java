@@ -82,6 +82,7 @@ public class AuthService implements UserDetailsService {
                     break;
                 case D:
                     authDao.delete(authVO);
+                    authDao.deleteMenuAuthByAuth(authVO);
                     System.out.println(WorkType.D);
                     break;
             }

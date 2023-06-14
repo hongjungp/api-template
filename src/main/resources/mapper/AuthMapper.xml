@@ -43,6 +43,11 @@
         WHERE AUTH_ID = #{authId}
     </delete>
 
+    <delete id="deleteMenuAuthByAuth" parameterType="com.example.apitemplate.domain.auth.vo.AuthVO">
+        DELETE TBL_MENU_AUTH
+        WHERE AUTH_ID = #{authId}
+    </delete>
+
     <select id="findAllAuths" resultMap="authResultMap">
         SELECT *
         FROM TBL_AUTH

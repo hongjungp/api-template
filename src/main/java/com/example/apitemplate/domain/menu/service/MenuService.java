@@ -45,6 +45,7 @@ public class MenuService {
                     break;
                 case D:
                     menuDao.delete(menuVO);
+                    menuDao.deleteMenuAuthByMenu(menuVO);
                     System.out.println(WorkType.D);
                     break;
             }

@@ -28,5 +28,8 @@ public class AuthDao {
     public void delete(AuthVO authVO) {
         sqlSession.delete(SQL_PREFIX + "deleteAuth", authVO);
     }
+    public void deleteMenuAuthByAuth(AuthVO authVO) {
+        sqlSession.delete(SQL_PREFIX + "deleteMenuAuthByAuth", authVO);
+    }
 
 }

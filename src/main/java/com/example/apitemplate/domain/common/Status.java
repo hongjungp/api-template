@@ -8,7 +8,7 @@ import lombok.Getter;
 public enum Status {
     SUCCESS("00", "Success!"),
     PARAMETER_ERROR("01", "Bad Request Error!"),
-    NOT_FOUND_DATA("02", "Not found Error!");
+    NOT_FOUND_DATA("02", "Not found Data!");
 
     private String code;
     private String message;

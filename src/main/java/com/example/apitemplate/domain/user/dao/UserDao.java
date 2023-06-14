@@ -9,9 +9,10 @@ import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
-public class UserDao {
+public class UserDao{
     private final SqlSession sqlSession;
     private final String SQL_PREFIX = "com.example.apitemplate.domain.user.mapper.UserMapper.";
+
     public List<UserVO> findAllUsers(){
         return sqlSession.selectList(SQL_PREFIX+"findAllUsers");
     }
@@ -35,4 +36,5 @@ public class UserDao {
     public void updateLoginInfo(String id){
         sqlSession.selectOne(SQL_PREFIX+"updateLoginInfo", id);
     }
+
 }

@@ -26,8 +26,4 @@ public class UserDto extends BaseDto {
     private String lastPwdDt;
     private YN delYn;
     private YN useYn;
-//    private String crtDt;
-//    private String udtDt;
-//    private String crtId;
-//    private String udtId;
 }

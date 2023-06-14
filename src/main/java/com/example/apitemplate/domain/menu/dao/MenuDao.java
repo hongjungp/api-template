@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+
 @Repository
 @RequiredArgsConstructor
 public class MenuDao {
@@ -33,10 +34,15 @@ public class MenuDao {
         sqlSession.delete(SQL_PREFIX + "deleteMenu", menuVO);
     }
 
+    public void deleteMenuAuthByMenu(MenuVO menuVO) {
+        sqlSession.delete(SQL_PREFIX + "deleteMenuAuthByMenu", menuVO);
+    }
+
     public void insertMenuAuth(MenuAuthVO menuAuthVO) {
         sqlSession.insert(SQL_PREFIX + "insertMenuAuth", menuAuthVO);
     }
     public void deleteMenuAuth(MenuAuthVO menuAuthVO) {
         sqlSession.delete(SQL_PREFIX + "deleteMenuAuth", menuAuthVO);
     }
+
 }
